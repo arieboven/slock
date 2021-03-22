@@ -63,7 +63,7 @@ index 74429ae..30d6f8d 100644
  LDFLAGS = -s ${LIBS}
  COMPATSRC = explicit_bzero.c
 diff --git a/slock.c b/slock.c
-index 5ae738c..23e7e52 100644
+index 5ae738c..1ab5ee5 100644
 --- a/slock.c
 +++ b/slock.c
 @@ -1,5 +1,6 @@
@@ -231,15 +231,7 @@ index 5ae738c..23e7e52 100644
  			return lock;
  		}
  
-@@ -360,6 +420,7 @@ main(int argc, char **argv) {
- 
- 	/* get number of screens in display "dpy" and blank them */
- 	nscreens = ScreenCount(dpy);
-+    fprintf(stderr, "%d screens\n", nscreens);
- 	if (!(locks = calloc(nscreens, sizeof(struct lock *))))
- 		die("slock: out of memory\n");
- 	for (nlocks = 0, s = 0; s < nscreens; s++) {
-@@ -390,6 +451,12 @@ main(int argc, char **argv) {
+@@ -390,6 +450,12 @@ main(int argc, char **argv) {
  
  	/* everything is now blank. Wait for the correct password */
  	readpw(dpy, &rr, locks, nscreens, hash);
