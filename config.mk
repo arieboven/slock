@@ -15,7 +15,7 @@ XINERAMALIBS  = -lXinerama
 XINERAMAFLAGS = -DXINERAMA
 
 # freetype
-FREETYPELIBS = -lfontconfig -lXft
+FREETYPELIBS = -lXft
 FREETYPEINC = /usr/include/freetype2
 
 # includes and libs

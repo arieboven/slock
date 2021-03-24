@@ -456,6 +456,5 @@ main(int argc, char **argv) {
 	}
 	XSync(dpy, 0);
 	XCloseDisplay(dpy);
-
 	return 0;
 }
