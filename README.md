@@ -20,33 +20,17 @@ Afterwards enter the following command to build and install slock
 
 Dwmlogo patch
 -------------
-This build contains the dwmlogo patch, which instead of using the colors for the whole screen, it draws the dwm logo which change color based on the state.
+This build contains the dwmlogo patch (look at the date to see which one is the latest), which instead of using the colors for the whole screen, it draws the dwm logo which changes color based on the state.
 
 ### Logodwm in combination with other patches
 I have not tested the logodwm patch with all other patches, so if there is some incompatibility, make an issue or create a pull request.
 
 
 ### Dwmlogo patch conflict with dpms patch
-Although it gives not an error in the `main` function while patching with `dpms` it does not work properly. To fix it edit the `main` function so it looks like this:
+With the `dpms` patch there is a conflict in the `main` function. Edit the `main` function so it looks like this, for it to work properly:
 
     main(int argc, char **argv){
         ...
-
-        /* did we manage to lock everything? */
-        if (nlocks != nscreens)
-            return 1;
-
-        /* code from dpms patch */
-        ...
-
-        XSync(dpy, 0);
-
-        ...
-
-        /* everything is now blank. Wait for the correct password */
-        readpw(dpy, &rr, locks, nscreens, hash);
-        for (nlocks = 0, s = 0; s < nscreens; s++) {
-            XFreePixmap(dpy, locks[s]->drawable);
             XFreeGC(dpy, locks[s]->gc);
         }
 
